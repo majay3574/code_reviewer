@@ -1,0 +1,208 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    line-height: 1.6;
+    background-color: #081419;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0,30,20,0.1) 25%, transparent 25%, transparent 50%, rgba(0,30,20,0.1) 50%, rgba(0,30,20,0.1) 75%, transparent 75%);
+    background-size: 40px 40px;
+    animation: move-bg 8s linear infinite;
+    z-index: -2;
+}
+
+@keyframes move-bg {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 40px 40px;
+    }
+}
+
+/* Tech circuit lines */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0,200,100,0.15) 0%, transparent 20%),
+        radial-gradient(circle at 70% 80%, rgba(0,200,100,0.1) 0%, transparent 20%),
+        linear-gradient(90deg, transparent 99%, rgba(0,200,100,0.2) 99.5%, transparent 100%),
+        linear-gradient(0deg, transparent 99%, rgba(0,200,100,0.2) 99.5%, transparent 100%);
+    background-size: 100% 100%, 100% 100%, 50px 50px, 50px 50px;
+    z-index: -1;
+}
+
+.container {
+    background-color: rgba(245, 245, 245, 0.95);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 200, 100, 0.3);
+    border: 1px solid rgba(0, 200, 100, 0.2);
+}
+
+h1 {
+    color: #00b377;
+    text-shadow: 0 0 5px rgba(0, 200, 100, 0.3);
+    border-bottom: 2px solid rgba(0, 200, 100, 0.3);
+    padding-bottom: 10px;
+}
+
+h2 {
+    color: #008f5f;
+    border-bottom: 1px solid rgba(0, 200, 100, 0.2);
+    padding-bottom: 5px;
+}
+
+.subtitle {
+    color: #008f5f;
+}
+
+input,
+textarea,
+button,
+select {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input, select {
+    border: 1px solid #00b377;
+    background-color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 200, 100, 0.7);
+    border-color: #00b377;
+}
+
+textarea {
+    min-height: 200px;
+    font-family: monospace;
+    background-color: #0a1a15;
+    color: #ffffff;
+    border: 1px solid #00b377;
+    box-shadow: inset 0 0 10px rgba(0, 200, 100, 0.2);
+}
+
+button {
+    background-color: #00b377;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover {
+    background-color: #008f5f;
+    box-shadow: 0 0 10px rgba(0, 200, 100, 0.7);
+}
+
+button::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: rotate(45deg);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% {
+        left: -150%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+.loading {
+    display: none;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: #00b377;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+    box-shadow: 0 0 15px rgba(0, 200, 100, 0.5);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.error {
+    color: #ff4d4d;
+    font-size: 14px;
+    background-color: rgba(255, 77, 77, 0.1);
+    padding: 5px 10px;
+    border-radius: 3px;
+    border-left: 3px solid #ff4d4d;
+}
+
+.success {
+    color: #00cc66;
+    font-size: 14px;
+    background-color: rgba(0, 204, 102, 0.1);
+    padding: 5px 10px;
+    border-radius: 3px;
+    border-left: 3px solid #00cc66;
+}
+
+/* Tech dots animation */
+.tech-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    overflow: hidden;
+}
+
+.tech-particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: rgba(0, 200, 100, 0.5);
+    border-radius: 50%;
+}

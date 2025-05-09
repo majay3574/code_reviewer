@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Code Review with Cohere</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- apikey:0PedULcLFBzlGPGYyqXsmOBRhPtBHs4wmcHmIKIa -->
+    <div class="tech-particles" id="particles"></div>
+    <div class="container">
+        <h1>GitHub Code Review Generator</h1>
+        <p class="subtitle">Uses Cohere's official API to analyze GitHub repositories</p>
+
+        <form id="reviewForm">
+            <label for="githubUrl">GitHub Repository URL:</label>
+            <input type="text" id="githubUrl" placeholder="https://github.com/username/repository" required>
+
+            <label for="apiKey">Cohere API Key:</label>
+            <input type="password" id="apiKey" required>
+
+            <label for="modelSelect">Cohere Model:</label>
+            <select id="modelSelect">
+                <option value="command-a-03-2025">command-a-03-2025</option>
+                <option value="command-r-plus">command-r-plus</option>
+                <option value="command-r">command-r</option>
+                <option value="command">command</option>
+            </select>
+
+            <button type="submit">Generate Code Review</button>
+        </form>
+
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Generating review... This may take up to 30 seconds.</p>
+        </div>
+
+        <div>
+            <h2>Review Results:</h2>
+            <textarea id="output" readonly></textarea>
+            <button id="downloadBtn" style="display: none;">Download Review</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

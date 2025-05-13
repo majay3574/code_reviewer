@@ -34,33 +34,64 @@ document.addEventListener('DOMContentLoaded', () => {
     async function generateReview(githubUrl, apiKey, model) {
         const prompt = `
 Review the code in this GitHub repository: ${githubUrl}
-You are a thorough code reviewer focusing on Java,Selenium,javascript,Typescript and Playwright scripts. For each file you review, follow this structure:
+You are an expert code reviewer with in-depth knowledge in XPath, CSS, Java, Selenium, JavaScript, TypeScript, and Playwright.
+Analyze the provided code thoroughly from top to bottom and return a structured review following the detailed checklist below:
+✅ 1. Code Working Status
+For complete automation or script-based code (Java, TypeScript, Playwright, etc.):
+✓ Code works as expected — if it runs without issues.
+✘ Code doesn't work as expected — if there are runtime errors or logic flaws.\
+For code snippets or partial programs: Leave this section empty.
+🧾 2. Naming Conventions
+Ensure:
+Class names follow PascalCase
+Methods and variables use camelCase
+Constants use UPPER_SNAKE_CASE
+Provide:
+✓ Naming conventions are correct
+or list specific violations (e.g., “Variable should be in camelCase”)
+💬 3. Comment Quality
+If comments are:
+Present and explain the logic well:
+✓ Helpful comments are included. Good practice.
+Missing or unhelpful:
+✘ Comments are missing or inadequate. Please add comments to explain logic.
+⚙️ 4. Functionality Summary
+In one concise sentence, summarize what the code is intended to do.
+Then mark:
+✓ Functionality is correctly implemented
+or ✘ Functionality doesn’t align with its intended purpose
+🧱 5. Code Structure & Modularity
+Is the code split into reusable functions or methods?
+Are responsibilities separated (e.g., no large God classes)?
+Feedback options:
+✓ Code is well-structured and modular
+or list issues like: "Too many responsibilities in a single function", "Consider splitting logic"
+🚀 6. Performance & Optimization
+Look for:
+Unnecessary DOM queries
+Redundant loops
+Inefficient selectors in XPath or CSS
+Feedback options:
+✓ Code is optimized for performance
+or: ✘ Performance bottlenecks found – suggest improving selector strategy or reducing repetition
+👁️ 7. Readability & Formatting
+Check for:
+Indentation
+Line spacing
+Meaningful variable names
+Feedback:
+✓ Code is clean and easy to read
+or: ✘ Code readability can be improved – suggest better formatting/naming
+🧪 8. Testability (for Automation Scripts)
+Can the script be easily tested or integrated into CI/CD pipelines?
+Are there:
+Clear test assertions?
+Stable selectors?
+Environment independence?
+Feedback:
+✓ Script is testable and robust
+or: ✘ Testability concerns – consider making selectors more stable or parameterizing data
 
-Code Working Status:
-For abobe programs programs:
-If the code works as expected:
-✓ Code works as expected
-If the code has faults:
-✘ Code doesn't work as expected
-For Playwright scripts: Leave this section empty.
-
-Naming Conventions:
-Check if class names are in PascalCase and variables/methods are in camelCase.
-If correct:
-✓ The naming convention for the Classname and variable are given correctly.
-If incorrect: Point out the issue (e.g., class name not in PascalCase, variables/methods not in camelCase).
-
-Comment Lines:
-Check if comments are added to explain the logic.
-If comments are present and helpful:
-Comment Lines are added. Appreciated.
-If comments are missing or insufficient:
-Comments are not added. Try adding comment lines for better understanding.
-
-Functionality:
-Describe what the program is trying to achieve in one line.
-Use ✓ if the functionality is correctly implemented.
-Use ✘ if there's a mismatch between intent and implementation.
 `;
 
         const response = await fetch('https://api.cohere.com/v2/chat', {
